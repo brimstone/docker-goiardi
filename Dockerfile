@@ -8,9 +8,13 @@ ENV GOPATH /go
 
 ENV PACKAGES git golang ca-certificates
 
+EXPOSE 80
+
 # Set our command
 ENTRYPOINT ["/go/bin/goiardi"]
-CMD []
+CMD ["-c", "/etc/goiardi/goiardi.conf" ]
+
+VOLUME /etc/goiardi
 
 # Install the packages we need, clean up after them and us
 RUN apt-get update \
@@ -28,3 +32,5 @@ RUN apt-get update \
 	&& rm /tmp/dpkg.* \
 	&& rm -rf $GOPATH/src \
 	&& rm -rf $GOPATH/pkg
+
+COPY goiardi.conf /etc/goiardi/
