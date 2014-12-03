@@ -23,7 +23,7 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists \
 
-	&& go get -v github.com/brimstone/goiardi \
+	&& go get -v github.com/ctdk/goiardi \
 
 	&& apt-get remove -y --purge $PACKAGES \
 	&& apt-get autoremove -y --purge \
